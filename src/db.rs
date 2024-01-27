@@ -3,14 +3,15 @@ use deadpool_postgres::Client;
 use tokio_pg_mapper::FromTokioPostgresRow;
 use std::io;
 
-pub async fn get_todos(client: &Client) -> Result<Vec<TodoList>, AppError> {
+pub async fn get_todos(client: &Client) -> Result<Vec<TodoList>, io::Error> {
     let statement = client
         .prepare("select * from todo_list order by id desc")
-        .await?;
+        .await.unwrap();
 
     let todos = client
         .query(&statement, &[])
-        .await?
+        .await
+        .expect("Error getting todo lists")
         .iter()
         .map(|row| TodoList::from_row_ref(row).unwrap())
         .collect::<Vec<TodoList>>();
