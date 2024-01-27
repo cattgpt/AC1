@@ -1,9 +1,15 @@
+mod models;
+
 use actix_web::{HttpServer, App, Responder};
 use std::io;
 use actix_web::web;
+use actix_web::HttpResponse;
+
+use crate::models::Status;
 
 async fn status() -> impl Responder {
-  "{\"status\": \"UP\"}"
+    HttpResponse::Ok()
+        .json(Status {status: "UP".to_string()})
 
 }
 
