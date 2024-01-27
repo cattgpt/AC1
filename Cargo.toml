@@ -10,8 +10,6 @@ actix-web = "4"
 actix-rt ="2.9.0"
 chrono = "0.4"
 serde = {version = "1.0.196", features=["derive"]}
-# use to read config from a file and load in the environment
 dotenv = "0.15.0"
-# read config from different sources and load in a type we can define
-config = "0.13.4"
+config = "0.10.1"
 

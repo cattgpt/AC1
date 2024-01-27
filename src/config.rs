@@ -16,9 +16,9 @@ pub struct Config {
 
 // factory
 impl Config {
-    pub fun from_env() -> Result<Self, ConfigError>  {
+    pub fn from_env() -> Result<Self, ConfigError> {
         let mut cfg = config::Config::new();
-        cfg.merg(config::Environment::new())?;
-        cfg.try_into();
+        cfg.merge(config::Environment::new())?;
+        cfg.try_into()
     }
 }
