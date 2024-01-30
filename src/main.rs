@@ -4,6 +4,7 @@ mod handlers;
 mod db;
 
 use actix_web::web;
+use actix_web::web::Data;
 use actix_web::{HttpServer, App};
 use dotenv::dotenv;
 use std::io;
@@ -17,7 +18,7 @@ use crate::handlers::*;
 async fn main()-> io::Result<()> {
     std::env::set_var("RUST_LOG", "debug");
     env_logger::init();
-    
+
     // load server configs
     dotenv().ok();
     let config = Config::from_env().unwrap();
@@ -28,7 +29,7 @@ async fn main()-> io::Result<()> {
     println!("Starting serer at http://{}:{}/", config.server.host, config.server.port);
     HttpServer::new(move || {
        App::new()
-         .app_data(pool.clone())
+         .app_data(Data::new(pool.clone()))
          .route("/", web::get().to(status))
          .route("/todos{_:/?}", web::get().to(get_todos))
 
