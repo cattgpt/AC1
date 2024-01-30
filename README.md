@@ -1,13 +1,20 @@
-# todo
+## local server
 start up local server:
 ```
 cargo run
 ```
-curl:
+
+## curl command
+curl full list:
 ```
 curl http://localhost:8080/
 ```
+curl items for a todo:
+```
+curl http://localhost:8080/todos/1/items 
+```
 
+## database setup
 for data base:
 make sure docker is run on mac, spin up docker first:
 ```
