@@ -22,3 +22,7 @@ pub struct TodoList {
     pub title: String,
 }
 
+#[derive(Deserialize)]
+pub struct CreateTodoList{
+    pub title: String
+}

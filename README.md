@@ -11,9 +11,17 @@ curl full list:
 ```
 curl http://localhost:8080/
 ```
+
 curl items for a todo:
 ```
 curl http://localhost:8080/todos/1/items 
+```
+
+create an item:
+```
+curl -X POST -H "Content-Type: application/json" -d '{"title": "List 3" }' http://localhost:8080/todos
+
+curl http://localhost:8080/todos
 ```
 
 ## database setup

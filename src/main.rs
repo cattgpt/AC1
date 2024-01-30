@@ -32,6 +32,7 @@ async fn main()-> io::Result<()> {
          .app_data(Data::new(pool.clone()))
          .route("/", web::get().to(status))
          .route("/todos{_:/?}", web::get().to(get_todos))
+         .route("/todos{_:/?}", web::post().to(create_todo))
          .route("/todos/{list_id}/items", web::get().to(get_items))
 
     })
