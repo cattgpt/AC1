@@ -1,5 +1,7 @@
 # Learn Actix
 
+Pure Actix BE API for CRUD
+
 ## local server
 start up local server:
 ```
