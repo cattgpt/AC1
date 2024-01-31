@@ -44,3 +44,14 @@ pub async fn create_todo(db_pool: web::Data<Pool>, json: web::Json<CreateTodoLis
         Err(_) => HttpResponse::InternalServerError().into()
     }
 }
+
+pub async fn check_item(db_pool: web::Data<Pool>, path: web::Path<(i32,i32)>) -> impl Responder {
+    let client: Client =
+       db_pool.get().await.expect("Error connecting to the data base");
+    let result = db::check_item(&client, path.0, path.1).await;
+
+    match result {
+        Ok(todo) => HttpResponse::Ok().json(todo),
+        Err(_) => HttpResponse::InternalServerError().into()
+    }
+}
