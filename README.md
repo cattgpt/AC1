@@ -24,6 +24,10 @@ curl -X POST -H "Content-Type: application/json" -d '{"title": "List 3" }' http:
 curl http://localhost:8080/todos
 ```
 
+check an item
+```
+ curl -X PUT http://localhost:8080/todos/1/items/2 -s
+```
 ## database setup
 for data base:
 make sure docker is run on mac, spin up docker first:

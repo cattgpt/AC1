@@ -1,7 +1,9 @@
 use actix_web::{web,HttpResponse, Responder};
-use crate::models::{Status, CreateTodoList};
+use crate::models::{Status, CreateTodoList, ResultResponse};
 use crate::db;
 use deadpool_postgres::{Pool, Client};
+use std::io;
+use io::ErrorKind::Other;
 
 pub async fn status() -> impl Responder {
     HttpResponse::Ok().json(Status {
@@ -51,7 +53,8 @@ pub async fn check_item(db_pool: web::Data<Pool>, path: web::Path<(i32,i32)>) ->
     let result = db::check_item(&client, path.0, path.1).await;
 
     match result {
-        Ok(todo) => HttpResponse::Ok().json(todo),
+        Ok(()) => HttpResponse::Ok().json(ResultResponse{success: true}),
+        Err(ref e) if e.kind() == Other => HttpResponse::Ok().json(ResultResponse{success: false}),
         Err(_) => HttpResponse::InternalServerError().into()
     }
 }

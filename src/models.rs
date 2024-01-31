@@ -26,3 +26,8 @@ pub struct TodoList {
 pub struct CreateTodoList{
     pub title: String
 }
+
+#[derive(Serialize,Deserialize)]
+pub struct ResultResponse {
+    pub success: bool
+}
