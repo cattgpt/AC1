@@ -1,4 +1,4 @@
-# Learn Actix
+# Learn Rust, Rust is awesome.
 
 Pure Actix BE API for CRUD
 
